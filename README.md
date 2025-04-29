@@ -31,7 +31,7 @@ Since this is a static HTML/CSS project:
 [HomePage.html](https://github.com/Solaceee2/ReservIT/blob/main/ReservIT_Group_CtrlC/HomePage.html)
 
 ## Link to Admin Pages:
-{adminhomepage.html}(https://github.com/Solaceee2/ReservIT/blob/main/ReservIT_Group_CtrlC/adminhomepage.html)
+[adminhomepage.html](https://github.com/Solaceee2/ReservIT/blob/main/ReservIT_Group_CtrlC/adminhomepage.html)
 
 
 ## Credits
