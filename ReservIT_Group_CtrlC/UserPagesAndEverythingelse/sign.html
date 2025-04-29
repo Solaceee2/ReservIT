@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReservIt - Register</title>
+    <link rel="stylesheet" href="../static/css/all.min.css">
+    <link rel="stylesheet" href="resrevitGlobalNavBar.css">
+    <script src="everythingDesign.js" defer></script>
+    <style>
+
+        .logo-container .logo {
+            height: 50px;
+            width: auto;
+            margin-top: 23px;
+        }
+
+        /* Split Container */
+        .split-container {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+            margin: 80px auto 30px;
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .left-panel {
+            flex: 1;
+            background: linear-gradient(135deg, var(--light) 0%, var(--bg) 100%);
+            color: var(--text);
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 350px;
+            color: var(--text);
+        }
+
+        .right-panel {
+            flex: 1;
+            padding: 60px 50px;
+        }
+
+        h2 {
+            color: var(--primary-dark);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light);
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(3, 90, 166, 0.2);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .toggle-password {
+            position: absolute;
+            top: 38px;
+            right: 15px;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .password-requirements {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 5px;
+            line-height: 1.4;
+        }
+
+        .terms {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin: 25px 0;
+            line-height: 1.5;
+        }
+
+        .btn-register {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 14px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .btn-register:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-log {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 14px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .btn-log:hover {
+            background-color: var(--light);
+        }
+
+        @media (max-width: 900px) {
+            .split-container {
+                flex-direction: column;
+                margin-top: 70px;
+            }
+
+            .left-panel {
+                padding: 40px 20px;
+            }
+
+            .right-panel {
+                padding: 40px 30px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo-container">
+            <a href="HomePage.html"><img src="../static/scripting%20images/reservitlogo.png" class="logo" alt="ReservIt Logo"/></a>
+        </div>
+
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <label for="Search">Search</label>
+            <input type="text" id="Search">
+        </div>
+
+        <div class="nav-buttons">
+            <a href="sign.html">
+                <button class="btn-signup">Sign Up</button>
+            </a>
+            <a href="login.html">
+            <button class="btn-login">Login</button>
+            </a>
+        </div>
+
+        <div class="icons">
+            <div class="dropdown-container">
+                <i class="fas fa-user-circle" id="UserProfilePic"></i>
+                <div id="profileDropdown" class="dropdown-content">
+                    <a href="userprofile.html">View Profile</a>
+                    <a href="reservations.html">My Reservations</a>
+                    <a href="bookings.html">My Bookings</a>
+                    <a href="HomePage.html">LogOut</a>
+                </div>
+            </div>
+            <div class="dropdown-container">
+                <i class="fas fa-bars" id="MenuBar"></i>
+                <div id="menuDropdown" class="dropdown-content">
+                    <a href="NotificationPreferences.html">Notifications Preferences</a>
+                    <a href="TermsServices.html">FAQs</a>
+                    <a href="TermsServices.html">Terms of Services and Policies</a>
+                    <a href="settings.html">Settings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="split-container">
+        <div class="left-panel">
+            <div class="logo">
+                <img src="../static/scripting%20images/reservitlogo.png" height="286" width="335" alt="ReservIt Logo"/>
+            </div>
+            <h1>Reserve It, use it, love it</h1>
+            <p class="tagline">Reservit helps you to easily and efficiently book and reserve the gym, and the function halls for any event.</p>
+        </div>
+
+        <div class="right-panel">
+            <h2>Register Account</h2>
+            <form id="registrationForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" name="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Unique Username">
+                </div>
+
+                <div class="form-group">
+                    <label for="position">Position</label>
+                        <select id="position" name="position" onchange="toggleOtherPosition(this)">
+                            <option disabled selected>Select your position</option>
+                            <option value="OrgPres">Organization President</option>
+                            <option value="OrgSec">Organization Secretary</option>
+                            <option value="Dean">Dean</option>
+                            <option value="Others">Others</option>
+                        </select>
+
+                      <input type="text" id="otherPosition" name="otherPosition" placeholder="Please specify your position" style="display:none; margin-top:10px;">
+                </div>
+
+
+                    <script>
+                      function toggleOtherPosition(select) {
+                        const otherInput = document.getElementById('otherPosition');
+                        if (select.value === "Others") {
+                          otherInput.style.display = "block";
+                        } else {
+                          otherInput.style.display = "none";
+                          otherInput.value = ""; // clear it when hidden
+                        }
+                      }
+                    </script>
+
+
+                <div class="form-group">
+                    <label for="idNumber">ID number</label>
+                    <input type="text" id="idNumber" name="idNumber" placeholder="e.g., 2400245">
+                </div>
+
+                <div class="form-group">
+                    <label for="affiliation">Affiliation</label>
+                    <select id="affiliation" name="affiliation" onchange="toggleOtherOrgs(this)">
+                        <option disabled selected>Select your affiliation</option>
+                        <option value="CIS-SSG">College of Information Sciences Supreme Student Government</option>
+                        <option value="LISA">LISA (Library and Information Science Association) - LIS - CIS</option>
+                        <option value="BYTE">BYTE (Body of Young Technologists) - IT - CIS</option>
+                        <option value="Others">Others</option>
+                    </select>
+
+                    <input type="text" id="otherOrgs" name="otherOrgs" placeholder="Please specify your Organization" style="display:none; margin-top:10px;">
+                </div>
+
+                <script>
+                      function toggleOtherOrgs(select) {
+                        const otherInput = document.getElementById('otherOrgs');
+                        if (select.value === "Others") {
+                          otherInput.style.display = "block";
+                        } else {
+                          otherInput.style.display = "none";
+                          otherInput.value = ""; // clear it when hidden
+                        }
+                      }
+                </script>
+
+
+                <div class="form-group" style="position: relative;">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Password must contain 8 characters minimum">
+                    <i class="fas fa-eye toggle-password" onclick="togglePassword('password', this)"></i>
+                    <div class="password-requirements">8 characters minimum, uppercase, number, special character</div>
+                </div>
+
+                <div class="form-group" style="position: relative;">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password must be the same with Password">
+                    <i class="fas fa-eye toggle-password" onclick="togglePassword('confirmPassword', this)"></i>
+                </div>
+
+                <div class="terms">
+                    By clicking Register Account, you agree to our <a href="TermsServices.html">Terms of Service</a> and confirm that you have read our Privacy Policy. You may receive email notifications from Reservit and can opt out at any time.
+                </div>
+</form>
+                <a href="HomePage.html"><button class="btn-register">Register Account</button></a>
+
+                <div class="login-link">
+                    Have an account? <br>
+                    <a href="login.html"><button class="btn-log">Login</button></a>
+                </div>
+
+        </div>
+    </div>
+
+    <script>
+        function togglePassword(inputId, icon) {
+            const input = document.getElementById(inputId);
+            const isPassword = input.type === 'password';
+
+            input.type = isPassword ? 'text' : 'password';
+            icon.classList.toggle('fa-eye');
+            icon.classList.toggle('fa-eye-slash');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReservIt - Booking</title>
+    <link rel="stylesheet" href="../static/css/all.min.css">
+    <link rel="stylesheet" href="resrevitGlobalNavBar.css">
+    <script src="everythingDesign.js" defer></script>
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: 80px auto 30px;
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .venue-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--light);
+        }
+
+        .venue-header h1 {
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            margin: 30px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--light);
+        }
+
+        /* Form elements matching reserving page */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light);
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(3, 90, 166, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .radio-option input {
+            width: auto;
+            margin-right: 8px;
+        }
+
+        .date-time-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .date-time-group .form-group {
+            flex: 1;
+        }
+
+        /* Notice and policy styling from reserving page */
+        .notice {
+            background-color: var(--bg);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin: 30px 0;
+        }
+
+        .notice h3 {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+
+        .notice-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .notice-icon {
+            margin-right: 15px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .policy {
+            margin: 30px 0;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .policy h3 {
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .policy ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .policy li {
+            margin-bottom: 8px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin: 25px 0;
+        }
+
+        .checkbox-group input {
+            width: auto;
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+
+        /* Action buttons matching reserving page */
+        .action-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--light);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin-top: 70px;
+            }
+
+            .date-time-group {
+                flex-direction: column;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo-container">
+            <a href="HomePage.html"><img src="../static/scripting%20images/reservitlogo.png" class="logo" alt="ReservIt Logo"/></a>
+        </div>
+
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <label for="Search">Search</label>
+            <input type="text" id="Search">
+        </div>
+
+        <div class="nav-buttons">
+            <a href="sign.html">
+                <button class="btn-signup">Sign Up</button>
+            </a>
+            <a href="login.html">
+            <button class="btn-login">Login</button>
+            </a>
+        </div>
+
+        <div class="icons">
+            <div class="dropdown-container">
+                <i class="fas fa-user-circle" id="UserProfilePic"></i>
+                <div id="profileDropdown" class="dropdown-content">
+                    <a href="userprofile.html">View Profile</a>
+                    <a href="reservations.html">My Reservations</a>
+                    <a href="bookings.html">My Bookings</a>
+                    <a href="HomePage.html">LogOut</a>
+                </div>
+            </div>
+            <div class="dropdown-container">
+                <i class="fas fa-bars" id="MenuBar"></i>
+                <div id="menuDropdown" class="dropdown-content">
+                    <a href="NotificationPreferences.html">Notifications Preferences</a>
+                    <a href="TermsServices.html">FAQs</a>
+                    <a href="TermsServices.html">Terms of Services and Policies</a>
+                    <a href="settings.html">Settings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <button class="close-btn" onclick="window.history.back()">
+              <i class="fas fa-times"></i>
+        </button>
+        <div class="venue-header">
+            <h1>CIS Function Hall room 105-107</h1>
+            <p>College of Information Sciences • KMS, (Behind McDo)</p>
+        </div>
+
+        <form id="bookingForm">
+            <!-- General Information Section -->
+            <h2 class="section-title">General Information</h2>
+
+            <div class="form-group">
+                <label>Event type</label>
+                <select required>
+                    <option value="" disabled>Select event type</option>
+                    <option value="general-assembly" selected>General Assembly</option>
+                    <option value="seminar">Seminar</option>
+                    <option value="workshop">Workshop</option>
+                    <option value="meeting">Meeting</option>
+                    <option value="other">Others</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Name of event</label>
+                <input type="text" value="Assembly of Technologies" required>
+            </div>
+
+            <div class="form-group">
+                <label>Purpose of Booking</label>
+                <textarea placeholder="Describe the purpose of your booking"></textarea>
+            </div>
+
+            <!-- Booking Date and Time Section -->
+            <h2 class="section-title">Booking Date and Time</h2>
+
+            <div class="date-time-group">
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" value="2025-02-09" required>
+                </div>
+                <div class="form-group">
+                    <label>Time</label>
+                    <input type="time" value="08:15" required>
+                </div>
+            </div>
+
+            <!-- Payment Section -->
+            <h2 class="section-title">Payment</h2>
+
+            <div class="form-group">
+                <label>Payment Method</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="cash" name="payment" value="cash" checked>
+                        <label for="cash">Cash</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="landbank" name="payment" value="landbank">
+                        <label for="landbank">Landbank</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>No. of attendees</label>
+                <input type="number" value="150" min="1" max="180" required>
+                <small style="color: var(--text-light); display: block; margin-top: 5px;">Max capacity: 180</small>
+            </div>
+
+            <div class="form-group">
+                <label>Event arranged by</label>
+                <input type="text" value="BYTE" required>
+            </div>
+
+            <!-- Notice Section -->
+            <div class="notice">
+                <h3>Important Notice:</h3>
+                <div class="notice-item">
+                    <span class="notice-icon">☑</span>
+                    <span>Users are responsible for cleaning the venue before the reservation ends.</span>
+                </div>
+                <div class="notice-item">
+                    <span class="notice-icon">✗</span>
+                    <span>Report any damages immediately after use.</span>
+                </div>
+                <div class="notice-item">
+                    <span class="notice-icon">■</span>
+                    <span>Failure to comply may result in booking restrictions.</span>
+                </div>
+            </div>
+
+            <!-- Policy Section -->
+            <div class="policy">
+                <h3>Modification & Cancellation Policy</h3>
+                <ul>
+                    <li>Once a booking is approved, changes or cancellations will require a fee or compensation.</li>
+                    <li>Last-minute changes may not be allowed or may result in booking restrictions.</li>
+                    <li>Please review your booking carefully before submitting.</li>
+                </ul>
+            </div>
+
+            <!-- Agreement Checkbox -->
+            <div class="checkbox-group">
+                <input type="checkbox" id="agreeTerms" required checked>
+                <label for="agreeTerms">I agree to follow the venue policies, and reservation policies.</label>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button type="button" class="btn btn-outline" onclick="window.history.back()">
+                    <i class="fas fa-arrow-left"></i>
+                    Back
+                </button>
+                <button type="submit" class="btn btn-primary" onclick="window.history.back()">
+                    <i class="fas fa-check"></i>
+                    Confirm Booking
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Form validation and submission logic
+            alert('Booking submitted successfully!');
+            // In a real application, you would send the data to a server here
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReservIt - Login</title>
+    <link rel="stylesheet" href="../static/css/all.min.css">
+    <link rel="stylesheet" href="resrevitGlobalNavBar.css">
+    <script src="everythingDesign.js" defer></script>
+    <style>
+        .logo-container .logo {
+            height: 50px;
+            width: auto;
+            margin-top: 23px;
+        }
+
+        /* Split Container */
+        .split-container {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+            margin: 80px auto 30px;
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .left-panel {
+            flex: 1;
+            background: linear-gradient(135deg, var(--light) 0%, var(--bg) 100%);
+            color: var(--text);
+            padding: 30px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 350px;
+            color: var(--text);
+        }
+
+        .right-panel {
+            flex: 1;
+            padding: 60px 50px;
+        }
+
+        h2 {
+            color: var(--primary-dark);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light);
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(3, 90, 166, 0.2);
+        }
+
+        .button-login {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 14px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+
+        }
+
+
+
+        .register-link {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .register-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+            color: var(--primary-dark);
+        }
+
+        @media (max-width: 900px) {
+            .split-container {
+                flex-direction: column;
+                margin-top: 70px;
+            }
+
+            .left-panel {
+                padding: 40px 20px;
+            }
+
+            .right-panel {
+                padding: 40px 30px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo-container">
+            <a href="HomePage.html"><img src="../static/scripting%20images/reservitlogo.png" class="logo" alt="ReservIt Logo"/></a>
+        </div>
+
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <label for="Search">Search</label>
+            <input type="text" id="Search">
+        </div>
+
+        <div class="nav-buttons">
+            <a href="sign.html">
+                <button class="btn-signup">Sign Up</button>
+            </a>
+            <a href="login.html">
+            <button class="btn-login">Login</button>
+            </a>
+        </div>
+
+        <div class="icons">
+            <div class="dropdown-container">
+                <i class="fas fa-user-circle" id="UserProfilePic"></i>
+                <div id="profileDropdown" class="dropdown-content">
+                    <a href="userprofile.html">View Profile</a>
+                    <a href="reservations.html">My Reservations</a>
+                    <a href="bookings.html">My Bookings</a>
+                    <a href="HomePage.html">LogOut</a>
+                </div>
+            </div>
+            <div class="dropdown-container">
+                <i class="fas fa-bars" id="MenuBar"></i>
+                <div id="menuDropdown" class="dropdown-content">
+                    <a href="NotificationPreferences.html">Notifications Preferences</a>
+                    <a href="TermsServices.html">FAQs</a>
+                    <a href="TermsServices.html">Terms of Services and Policies</a>
+                    <a href="settings.html">Settings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="split-container">
+        <div class="left-panel">
+            <div class="logo">ReservIt</div>
+                <img src="../static/scripting%20images/reservitlogo.png" alt="ReservIt Logo"/>
+            <h1>Reserve It, use it, love it</h1>
+            <p class="tagline">Reservit helps you to easily and efficiently book and reserve the gym, and the function halls for any event.</p>
+        </div>
+
+        <div class="right-panel">
+            <h2>Login</h2>
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password">
+                </div>
+
+                <a href="HomePage.html"><button class="button-login">Login</button></a>
+
+                <div class="register-link">
+                    Don't have an account? <a href="sign.html">Register</a>
+                </div>
+
+        </div>
+    </div>
+
+<script>
+  let lastScrollY = window.scrollY;
+  const navbar = document.querySelector('.navbar');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > lastScrollY) {
+
+      navbar.style.top = '-80px';
+    } else {
+
+      navbar.style.top = '0';
+    }
+    lastScrollY = window.scrollY;
+  });
+</script>
+
+</body>
+</html>

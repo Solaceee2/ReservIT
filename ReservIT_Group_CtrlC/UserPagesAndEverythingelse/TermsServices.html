@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReservIt - Policies</title>
+    <link rel="stylesheet" href="../static/css/all.min.css">
+    <link rel="stylesheet" href="resrevitGlobalNavBar.css">
+    <script src="everythingDesign.js" defer></script>
+    <style>
+        .close-btn {
+            background: none;
+            border: none;
+            color: black;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+
+        .container {
+            max-width: 1000px;
+            margin: 80px auto 30px;
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .policy-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .policy-header h1 {
+            color: var(--primary-dark);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .policy-header p {
+            color: var(--text-light);
+        }
+
+        .policy-section {
+            margin-bottom: 40px;
+        }
+
+        .policy-section h2 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--light);
+        }
+
+        .policy-section h3 {
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            margin: 25px 0 15px;
+        }
+
+        .policy-section p,
+        .policy-section ul {
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .policy-section ul {
+            padding-left: 20px;
+        }
+
+        .policy-section li {
+            margin-bottom: 10px;
+        }
+
+        .tab-container {
+            display: flex;
+            border-bottom: 1px solid var(--light);
+            margin-bottom: 30px;
+        }
+
+        .tab {
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-light);
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            color: var(--primary-dark);
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--light);
+            padding-bottom: 20px;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px 0;
+            color: var(--text);
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin-top: 70px;
+            }
+
+            .navbar {
+                padding: 5px 15px;
+            }
+
+            .search-bar {
+                width: 200px;
+            }
+
+            .tab-container {
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo-container">
+            <img src="../static/scripting%20images/reservitlogo.png" class="logo" alt="ReservIt Logo"/>
+        </div>
+
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <label for="Search">Search</label>
+            <input type="text" id="Search">
+        </div>
+
+        <div class="nav-buttons">
+            <a href="sign.html">
+                <button class="btn-signup">Sign Up</button>
+            </a>
+            <a href="login.html">
+            <button class="btn-login">Login</button>
+            </a>
+        </div>
+
+        <div class="icons">
+            <div class="dropdown-container">
+                <i class="fas fa-user-circle" id="UserProfilePic"></i>
+                <div id="profileDropdown" class="dropdown-content">
+                    <a href="userprofile.html">View Profile</a>
+                    <a href="reservations.html">My Reservations</a>
+                    <a href="bookings.html">My Bookings</a>
+                    <a href="HomePage.html">LogOut</a>
+                </div>
+            </div>
+            <div class="dropdown-container">
+                <i class="fas fa-bars" id="MenuBar"></i>
+                <div id="menuDropdown" class="dropdown-content">
+                    <a href="NotificationPreferences.html">Notifications Preferences</a>
+                    <a href="TermsServices.html">FAQs</a>
+                    <a href="TermsServices.html">Terms of Services and Policies</a>
+                    <a href="settings.html">Settings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <button class="close-btn" onclick="window.history.back()">
+              <i class="fas fa-times"></i>
+        </button>
+
+        <div class="policy-header">
+            <h1>Policies & Information</h1>
+            <p>Review our terms, privacy policy, and frequently asked questions</p>
+        </div>
+
+        <div class="tab-container">
+            <div class="tab active" onclick="openTab('terms')">Terms of Service</div>
+            <div class="tab" onclick="openTab('privacy')">Privacy Policy</div>
+            <div class="tab" onclick="openTab('faq')">FAQs</div>
+        </div>
+
+        <!-- Terms of Service Content -->
+        <div id="terms" class="tab-content active">
+            <div class="policy-section">
+                <h2>Terms of Service</h2>
+                <p><strong>Effective Date:</strong> April 1, 2025</p>
+            </div>
+
+            <div class="policy-section">
+                <h3>1. Acceptance of Terms</h3>
+                <p>By using ReservIt, you agree to comply with these Terms of Service. If you do not agree, please do not use our website.</p>
+            </div>
+
+            <div class="policy-section">
+                <h3>2. User Responsibilities</h3>
+                <p>Users must:</p>
+                <ul>
+                    <li>Provide accurate information during registration</li>
+                    <li>Use the platform for its intended purpose (venue reservations and scheduling)</li>
+                    <li>Respect booking policies and university regulations</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h3>3. Account Security</h3>
+                <p>Users are responsible for maintaining the confidentiality of their login credentials. ReservIt is not liable for unauthorized access due to negligence.</p>
+            </div>
+
+            <div class="policy-section">
+                <h3>4. Reservation Policies</h3>
+                <ul>
+                    <li>Reservations must be made in accordance with university rules</li>
+                    <li>Users are responsible for any damages or violations during their booked time</li>
+                    <li>Cancellations should be made in advance per university guidelines</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h3>5. Termination of Access</h3>
+                <p>ReservIt reserves the right to suspend or terminate access if users violate these terms, misuse the service, or engage in fraudulent activities.</p>
+            </div>
+
+            <div class="policy-section">
+                <h3>6. Limitation of Liability</h3>
+                <p>ReservIt is provided "as is" without any warranties. We are not responsible for technical issues, data loss, or damages resulting from the use of our platform.</p>
+            </div>
+
+            <div class="policy-section">
+                <h3>7. Contact Us</h3>
+                <p>For any questions about these Terms, please contact us at <a href="mailto:support@reservit.com">support@reservit.com</a>.</p>
+                <p>By using Reservit, you acknowledge that you have read and agreed to the above policies.</p>
+            </div>
+        </div>
+
+        <!-- Privacy Policy Content -->
+        <div id="privacy" class="tab-content">
+            <div class="policy-section">
+                <h2>Privacy Policy</h2>
+                <p><strong>Effective Date:</strong> April1, 2025</p>
+            </div>
+
+            <div class="policy-section">
+                <h3>1. Introduction</h3>
+                <p>Welcome to ReservIt! Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your personal information when you use our website.</p>
+            </div>
+
+            <div class="policy-section">
+                <h3>2. Information We Collect</h3>
+                <p>We may collect the following types of information when you use our services:</p>
+                <ul>
+                    <li><strong>Personal Information:</strong> (e.g., name, email, university affiliation, student/staff ID number, contact details)</li>
+                    <li><strong>Usage Data:</strong> (e.g., IP address, browser type, access times, pages viewed)</li>
+                    <li><strong>Booking and Reservation Information:</strong> (e.g., venue reservations, booking history, event details)</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h3>3. How We Use Your Information</h3>
+                <p>We use the information collected to:</p>
+                <ul>
+                    <li>Provide and manage venue reservations/bookings</li>
+                    <li>Improve user experience and website functionality</li>
+                    <li>Communicate important updates and support</li>
+                    <li>Ensure security and prevent fraud</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h3>4. How We Protect Your Information</h3>
+                <p>We implement appropriate security measures to safeguard your data against unauthorized access, alteration, or disclosure.</p>
+            </div>
+
+            <div class="policy-section">
+                <h3>5. Sharing of Information</h3>
+                <p>We do not sell or share your personal information with third parties, except:</p>
+                <ul>
+                    <li>When required by law or university policies</li>
+                    <li>With authorized university personnel for administrative purposes</li>
+                    <li>To prevent fraudulent activity or ensure site security</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h3>6. Deletion of Account</h3>
+                <p>You may request deletion of your account and personal data by contacting us at <a href="mailto:support@reservit.com">support@reservit.com</a>. Once your request is processed, your account and associated data will be permanently removed from our system, except for any information required to comply with legal or university obligations. Please note that deleted data cannot be recovered.</p>
+            </div>
+
+            <div class="policy-section">
+                <h3>7. Your Rights and Choices</h3>
+                <p>You may request access, correction, or deletion of your personal data by contacting us at <a href="mailto:support@reservit.com">support@reservit.com</a>.</p>
+            </div>
+
+            <div class="policy-section">
+                <h3>8. Updates to this Privacy Policy</h3>
+                <p>We may update this policy from time to time. Any changes will be posted on this page with a revised effective date.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Content -->
+        <div id="faq" class="tab-content">
+            <div class="policy-section">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How do I make a reservation?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>To make a reservation, log in to your account, select the desired venue, choose an available time slot, and complete the booking form. You'll receive a confirmation email once your reservation is approved.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Can I cancel or modify my reservation?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, you can cancel or modify your reservation through your account dashboard, provided the changes are made within the allowed time frame (usually at least 24 hours before the scheduled time). Late cancellations may be subject to penalties.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What payment methods are accepted?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We currently accept cash payments, and GCash transactions for venue bookings. Payment instructions will be provided after your booking request is approved.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How long does approval take?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Approval for reservations typically takes 12 hours to 2 business days. For urgent requests, please contact our support team at <a href="mailto:support@reservit.com">support@reservit.com</a>.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What should I do if I encounter technical issues?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>If you experience any technical difficulties, please try refreshing the page or clearing your browser cache. If the issue persists, contact our technical support team with details of the problem you're experiencing.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How do I delete my account?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>You can request account deletion by emailing <a href="mailto:support@reservit.com">support@reservit.com</a> with your account details. Please note this action is irreversible and will cancel any pending reservations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications panel -->
+    <div class="notification-toggle" id="notificationToggle">
+        <i class="fas fa-chevron-right"></i>
+    </div>
+
+    <div class="notifications-panel" id="notificationsPanel">
+        <div class="notification-close" id="notificationClose">
+            <i class="fas fa-times"></i>
+        </div>
+        <h2>Notifications</h2>
+        <div class="notification-item">
+            <p>The payment for your booking for CIS Function Hall room 105-107 on 02/09/25 has been received. Your booking has been approved. <a href="../adminpages/managebooking.html">more...</a></p>
+            <span class="time">01:10PM</span>
+        </div>
+        <div class="notification-item">
+            <p>Your booking for CIS Function Hall room 105-107 on 02/09/25 is pending. Pay the fee <a>here</a> (09123456789) to approve your booking. <a href="../adminpages/managebooking.html">more...</a></p>
+            <span class="time">12:00AM</span>
+        </div>
+        <div class="notification-item">
+            <p>Your reservation for CIS Function Hall room 105-107 on 02/07/25 has been approved.  <a href="../adminpages/managereservation.html">more...</a></p>
+            <span class="time">11:00AM</span>
+        </div>
+
+        <div class="notification-item">
+            <p>Your reservation EDIT for CIS Function Hall room 105-107 on 02/07/25 is being processed. You will receive a confirmation once it is approved. <a href="../adminpages/managereservation.html">more...</a></p>
+            <span class="time">11:00AM</span>
+        </div>
+
+        <div class="notification-item">
+            <p>Your reservation request for CIS Function Hall room 105-107 on 02/07/25 is being processed. You will receive a confirmation once it is approved. <a href="../adminpages/managereservation.html">more...</a></p>
+            <span class="time">16 hours ago</span>
+        </div>
+    </div>
+
+    <div class="notification-overlay" id="notificationOverlay"></div>
+
+
+    <script>
+        function openTab(tabName) {
+
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            document.getElementById(tabName).classList.add('active');
+
+            event.currentTarget.classList.add('active');
+        }
+
+        // FAQ toggle
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+
+            element.classList.toggle('active');
+            answer.classList.toggle('active');
+            icon.classList.toggle('fa-chevron-up');
+            icon.classList.toggle('fa-chevron-down');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Page</title>
+  <link rel="stylesheet" href="../static/css/all.min.css">
+  <link rel="stylesheet" href="resrevitGlobalNavBar.css">
+  <script src="everythingDesign.js" defer></script>
+
+  <style>
+
+    .close-btn {
+            background: none;
+            border: none;
+            color: black;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 90px auto 30px;
+      background-color: var(--white);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--light);
+    }
+
+    .profile img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-right: 25px;
+      border: 3px solid var(--primary);
+      object-fit: cover;
+    }
+
+    .profile-details h2 {
+      margin: 0 0 5px 0;
+      color: var(--primary-dark);
+      font-size: 24px;
+    }
+
+    .profile-details p {
+      margin: 5px 0;
+      color: var(--text-light);
+    }
+
+    .go-back {
+      margin-right: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      border-radius: 50%;
+      padding: 8px 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .go-back:hover {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .filters, .status-buttons {
+      margin-bottom: 25px;
+    }
+
+    .filters select, .status-buttons button {
+      padding: 10px 15px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: var(--light);
+      color: var(--primary-dark);
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .filters select:hover, .status-buttons button:hover {
+      background-color: var(--accent);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .filters select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 15px;
+      padding-right: 30px;
+    }
+
+    .card-section {
+      margin-bottom: 30px;
+    }
+
+    .card-header {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 12px 20px;
+      border-radius: 10px 10px 0 0;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .card {
+      background-color: var(--light);
+      padding: 20px;
+      margin-bottom: 10px;
+      border-radius: 0 0 10px 10px;
+      transition: all 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .card strong {
+      color: var(--primary-dark);
+      font-size: 16px;
+    }
+
+    .card .edit-button {
+      float: right;
+      background-color: var(--white);
+      color: var(--primary-dark);
+      border: 1px solid var(--primary-dark);
+      padding: 6px 15px;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .card .edit-button:hover {
+      background-color: var(--primary-dark);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .no-results {
+      padding: 20px;
+      font-style: italic;
+      color: var(--text-light);
+      background-color: var(--bg);
+      border-radius: 0 0 10px 10px;
+      text-align: center;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1001;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background-color: var(--white);
+      margin: 5% auto;
+      padding: 25px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 900px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .modal .close {
+      color: var(--text-light);
+      position: absolute;
+      right: 25px;
+      top: 15px;
+      font-size: 28px;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .modal .close:hover,
+    .modal .close:focus {
+      color: var(--primary-dark);
+      text-decoration: none;
+      cursor: pointer;
+      transform: scale(1.2);
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 5px 15px;
+      }
+
+      .search-bar {
+        width: 200px;
+      }
+
+      .container {
+        width: 95%;
+        padding: 20px;
+        margin-top: 70px;
+      }
+
+      .profile {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .profile img {
+        margin-right: 0;
+        margin-bottom: 15px;
+      }
+
+      .go-back {
+        margin-right: 0;
+        margin-bottom: 15px;
+      }
+
+      .filters select, .status-buttons button {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .modal-content {
+        width: 95%;
+      }
+    }
+
+      .username {
+        color: black;
+        margin-top: 9px;
+        font-weight: bold;
+        }
+  </style>
+</head>
+
+<body>
+  <div class="navbar">
+        <div class="logo-container">
+          <a href="HomePage.html"><img src="../static/scripting%20images/reservitlogo.png" class="logo" alt="ReservIt Logo"/></a>
+        </div>
+
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <label for="Search">Search</label>
+            <input type="text" id="Search">
+        </div>
+
+
+
+        <div class="icons">
+            <p class="username">Erle</p>
+            <div class="dropdown-container">
+                <i class="fas fa-user-circle" id="UserProfilePic"></i>
+                <div id="profileDropdown" class="dropdown-content">
+                    <a href="userprofile.html">View Profile</a>
+                    <a href="reservations.html">My Reservations</a>
+                    <a href="bookings.html">My Bookings</a>
+                    <a href="HomePage.html">LogOut</a>
+                </div>
+            </div>
+            <div class="dropdown-container">
+                <i class="fas fa-bars" id="MenuBar"></i>
+                <div id="menuDropdown" class="dropdown-content">
+                    <a href="NotificationPreferences.html">Notifications Preferences</a>
+                    <a href="TermsServices.html">FAQs</a>
+                    <a href="TermsServices.html">Terms of Services and Policies</a>
+                    <a href="settings.html">Settings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <div class="container">
+    <div class="profile">
+      <button class="close-btn" onclick="window.history.back()">
+              <i class="fas fa-times"></i>
+      </button>
+      <img src="../static/scripting%20images/profile-icon.png" alt="Profile Picture">
+      <div class="profile-details">
+        <h2>Erle Riann</h2>
+        <h3>Erle</h3>
+        <p>rianerle@gmail.com</p>
+        <p><b>Affiliation/s</b>: BYTE (Body of Young Technologists) - IT - CIS</p>
+        <p><b>Position</b>: Organization President</p>
+      </div>
+    </div>
+
+    <div class="filters">
+      <label for="sort">Sort by:</label>
+      <select id="sort" onchange="filterType()">
+        <option value="all">All</option>
+        <option value="booking">Booking</option>
+        <option value="reservation">Reservation</option>
+      </select>
+    </div>
+
+    <div class="status-buttons">
+      <button onclick="filterStatus('all')">All</button>
+      <button onclick="filterStatus('APPROVED')">Approved</button>
+      <button onclick="filterStatus('PENDING')">Pending</button>
+      <button onclick="filterStatus('CANCELLED')">Cancelled</button>
+      <button onclick="filterStatus('REJECTED')">Rejected</button>
+    </div>
+
+
+    <div id="cards">
+      <div class="card-section booking">
+        <div class="card-header">Booking</div>
+        <div class="card" data-status="APPROVED">
+          <strong>CIS Function Hall room 105-107</strong> <br>
+          09/09/25 SUN 08:00-17:00 - APPROVED
+          <button class="edit-button" onclick="openModal('viewbooking.html')">View Booking</button>
+        </div>
+      </div>
+
+      <div class="card-section reservation">
+        <div class="card-header">Reservation</div>
+        <div class="card" data-status="PENDING">
+          <strong>GYM Reservation </strong> <br>
+          09/12/25 MON 13:00-15:00 - PENDING
+          <button class="edit-button" onclick="openModal('viewreservation.html')">View Reservation</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <iframe id="modal-frame" src="" width="100%" height="600px"></iframe>
+    </div>
+  </div>
+
+  <script>
+    function filterStatus(status) {
+      const sections = document.querySelectorAll(".card-section");
+      sections.forEach(section => {
+        let cards = section.querySelectorAll(".card");
+        let matchCount = 0;
+
+        cards.forEach(card => {
+          if (card.dataset.status === status) {
+            card.style.display = "block";
+            matchCount++;
+          } else {
+            card.style.display = "none";
+          }
+        });
+
+        let noResult = section.querySelector(".no-results");
+        if (!noResult) {
+          noResult = document.createElement("div");
+          noResult.className = "no-results";
+          section.appendChild(noResult);
+        }
+
+        if (matchCount === 0) {
+          const type = section.classList.contains("booking") ? "booking" : "reservation";
+          noResult.textContent = `No ${status.toLowerCase()} ${type}s.`;
+          noResult.style.display = "block";
+        } else {
+          noResult.style.display = "none";
+        }
+      });
+    }
+
+    function filterType() {
+      const value = document.getElementById("sort").value;
+      const sections = document.querySelectorAll(".card-section");
+
+      sections.forEach(section => {
+        if (value === "all") {
+          section.style.display = "block";
+        } else {
+          section.style.display = section.classList.contains(value) ? "block" : "none";
+        }
+      });
+    }
+
+
+    function openModal(page) {
+      var modal = document.getElementById("myModal");
+      var iframe = document.getElementById("modal-frame");
+      iframe.src = page;
+      modal.style.display = "block";
+    }
+
+
+    function closeModal() {
+      var modal = document.getElementById("myModal");
+      var iframe = document.getElementById("modal-frame");
+      iframe.src = ""; // Stop the content when closing
+      modal.style.display = "none";
+    }
+
+    // Close modal when clicking outside the modal content
+    window.onclick = function(event) {
+      var modal = document.getElementById("myModal");
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+  </script>
+
+<!--Footerssss-->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="HomePage.html">Home</a>
+            <a href="VenuesAndSchedules.html">Venues and Schedules</a>
+            <a href="TermsServices.html">FAQ</a>
+            <a href="TermsServices.html">Privacy Policy</a>
+            <a href="TermsServices.html">Terms of Service</a>
+            <a>Contact Us:<a href="mailto:support@reservit.com">support@reservit.com</a> </a>
+        </div>
+        <p class="copyright">©2025 ReservIt. All rights reserved.</p>
+    </footer>
+</body>
+</html>

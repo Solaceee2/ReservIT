@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReservIt - Home</title>
+    <link rel="stylesheet" href="../static/css/all.min.css">
+    <link rel="stylesheet" href="resrevitGlobalNavBar.css">
+    <script src="everythingDesign.js" defer></script>
+
+    <style>
+        .intro {
+            padding: 150px 20px 80px;
+            text-align: center;
+            background:linear-gradient(135deg, var(--light) 0%, var(--bg) 100%);
+        }
+
+
+        .intro h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--text);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button, .reservebook-button, .view-button {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .cta-button:hover, .reservebook-button:hover, .view-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            transform: scale(1.3);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary-dark);
+            font-size: 2rem;
+        }
+
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+
+
+        .image-gallery {
+            background-color: var(--bg);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .gallery-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-container img {
+            width: 250px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .gallery-container img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Reserve Now Section */
+        .reserve-now {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: var(--light);
+        }
+
+        /* Design design and animations */
+        @media (max-width: 768px) {
+            .intro {
+                padding: 120px 20px 60px;
+            }
+
+            .intro h1 {
+                font-size: 2rem;
+            }
+
+            .feature-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Floating Reserve/Book Buttons */
+        .floating-buttons-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1003;
+        }
+
+        .floating-buttons-container {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+        }
+
+        .floating-button {
+            position: relative;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 300px;
+            height: 90px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            background-color: var(--primary);
+            color: var(--white);
+            overflow: visible; /* Important! to allow tooltip to show */
+        }
+
+        .book-button {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .reserve-button {
+            background-color: var(--white);
+            color: var(--primary-dark);
+            border: 3px solid var(--primary);
+        }
+
+        .floating-button:hover {
+            transform: scale(1.2);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .book-button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .reserve-button:hover {
+            background-color: var(--light);
+        }
+
+
+
+        .hover-text {
+            position: absolute;
+            top: 100%;
+            margin-top: 10px;
+            background-color: #222;
+            color: #fff;
+            font-size: 14px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 10;
+            visibility: hidden;
+        }
+
+        .floating-button:hover .hover-text {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0px);
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="navbar">
+        <div class="logo-container">
+            <a href="HomePage.html"><img src="../static/scripting%20images/reservitlogo.png" class="logo" alt="ReservIt Logo"/></a>
+        </div>
+
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <label for="Search">Search</label>
+            <input type="text" id="Search">
+        </div>
+
+        <div class="nav-buttons">
+            <a href="sign.html">
+                <button class="btn-signup">Sign Up</button>
+            </a>
+            <a href="login.html">
+            <button class="btn-login">Login</button>
+            </a>
+        </div>
+
+        <div class="icons">
+            <div class="dropdown-container">
+                <i class="fas fa-user-circle" id="UserProfilePic"></i>
+                <div id="profileDropdown" class="dropdown-content">
+                    <a href="userprofile.html">View Profile</a>
+                    <a href="reservations.html">My Reservations</a>
+                    <a href="bookings.html">My Bookings</a>
+                    <a href="HomePage.html">LogOut</a>
+                </div>
+            </div>
+            <div class="dropdown-container">
+                <i class="fas fa-bars" id="MenuBar"></i>
+                <div id="menuDropdown" class="dropdown-content">
+                    <a href="NotificationPreferences.html">Notifications Preferences</a>
+                    <a href="TermsServices.html">FAQs</a>
+                    <a href="TermsServices.html">Terms of Services and Policies</a>
+                    <a href="settings.html">Settings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="intro">
+        <h1>Reserve It, use it, love it.</h1>
+        <p>Reservit helps you to easily and efficiently book and reserve the gym, and the function halls for any event.</p>
+        <section class="reserve-now">
+            <a class="reservebook-button">
+                <i class="fas fa-calendar-plus"></i>
+                Reserve and Book Now!
+            </a>
+        </section>
+        <section class="view-button">
+        <a href="VenuesAndSchedules.html" class="cta-button">
+            <i class="fas fa-calendar-alt"></i>
+            View venues
+        </a>
+        </section>
+    </section>
+
+    <section class="features">
+        <h2>Reserve and book now!</h2>
+        <div class="feature-cards">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>Check Availability</h3>
+                <p>View real-time availability of all venues and function halls across the campus.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <h3>Easy Booking</h3>
+                <p>Reserve your preferred venue with just a few clicks, anytime, anywhere.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <h3>Get Notified</h3>
+                <p>Receive instant confirmation and reminders for your reservations and bookings.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="image-gallery">
+        <div class="gallery-container">
+            <img src="../static/scripting%20images/gallery1.jpg" alt="CIS Function Hall">
+            <img src="../static/scripting%20images/gallery2.jpg" alt="Closed Gym">
+            <img src="../static/scripting%20images/gallery3.jpg" alt="CTE Function Hall">
+        </div>
+    </section>
+
+    <!--Footerssss-->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="HomePage.html">Home</a>
+            <a href="VenuesAndSchedules.html">Venues and Schedules</a>
+            <a href="TermsServices.html">FAQ</a>
+            <a href="TermsServices.html">Privacy Policy</a>
+            <a href="TermsServices.html">Terms of Service</a>
+            <a>Contact Us:<a href="mailto:support@reservit.com">support@reservit.com</a> </a>
+        </div>
+        <p class="copyright">©2025 ReservIt. All rights reserved.</p>
+    </footer>
+
+
+    <!-- Notifications panel -->
+    <div class="notification-toggle" id="notificationToggle">
+        <i class="fas fa-chevron-right"></i>
+    </div>
+
+    <div class="notifications-panel" id="notificationsPanel">
+        <div class="notification-close" id="notificationClose">
+            <i class="fas fa-times"></i>
+        </div>
+        <h2>Notifications</h2>
+        <div class="notification-item">
+            <p>The payment for your booking for CIS Function Hall room 105-107 on 02/09/25 has been received. Your booking has been approved. <a href="../adminpages/managebooking.html">more...</a></p>
+            <span class="time">01:10PM</span>
+        </div>
+        <div class="notification-item">
+            <p>Your booking for CIS Function Hall room 105-107 on 02/09/25 is pending. Pay the fee <a>here</a> (09123456789) to approve your booking. <a href="../adminpages/managebooking.html">more...</a></p>
+            <span class="time">12:00AM</span>
+        </div>
+        <div class="notification-item">
+            <p>Your reservation for CIS Function Hall room 105-107 on 02/07/25 has been approved.  <a href="../adminpages/managereservation.html">more...</a></p>
+            <span class="time">11:00AM</span>
+        </div>
+
+        <div class="notification-item">
+            <p>Your reservation EDIT for CIS Function Hall room 105-107 on 02/07/25 is being processed. You will receive a confirmation once it is approved. <a href="../adminpages/managereservation.html">more...</a></p>
+            <span class="time">11:00AM</span>
+        </div>
+
+        <div class="notification-item">
+            <p>Your reservation request for CIS Function Hall room 105-107 on 02/07/25 is being processed. You will receive a confirmation once it is approved. <a href="../adminpages/managereservation.html">more...</a></p>
+            <span class="time">16 hours ago</span>
+        </div>
+    </div>
+
+    <div class="notification-overlay" id="notificationOverlay"></div>
+
+
+
+<!-- Book or Reserve Floating Buttons -->
+<div class="floating-buttons-overlay" id="floatingButtonsOverlay">
+    <div class="floating-buttons-container">
+        <a href="editreserve.html" class="floating-button reserve-button">
+            <span class="button-text">Reserve Venue</span>
+            <div class="hover-text">Reserve a venue now and confirm later, hold your spot before it's booked!</div>
+        </a>
+        <a href="editbooking.html" class="floating-button book-button">
+            <span class="button-text">Book Venue</span>
+            <div class="hover-text">Secure your venue with all details finalized your event is confirmed!!</div>
+        </a>
+    </div>
+</div>
+
+
+
+<script>
+    // Reserve and Booking Buttons Floating
+document.addEventListener('DOMContentLoaded', function() {
+    const reserveTriggerButton = document.querySelector('.reserve-now .reservebook-button');
+    const floatingOverlay = document.getElementById('floatingButtonsOverlay');
+
+    reserveTriggerButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        floatingOverlay.style.display = 'flex';
+    });
+
+    floatingOverlay.addEventListener('click', function(e) {
+        if (e.target === floatingOverlay) {
+            floatingOverlay.style.display = 'none';
+        }
+    });
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Reservation</title>
+  <link rel="stylesheet" href="../static/css/all.min.css">
+    <link rel="stylesheet" href="../UserPagesAndEverythingelse/resrevitGlobalNavBar.css">
+    <script src="../UserPagesAndEverythingelse/everythingDesign.js" defer></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: var(--bg);
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 800px;
+      margin: 30px auto;
+      background-color: var(--white);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      color: var(--primary-dark);
+      font-size: 1.5rem;
+      border-bottom: 2px solid var(--light);
+      padding-bottom: 10px;
+    }
+
+    .reservation-details p {
+      font-size: 1rem;
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+
+    .reservation-details strong {
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    .action-buttons {
+      margin: 30px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .action-buttons button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .action-buttons button i {
+      font-size: 1rem;
+    }
+
+    .action-buttons button:first-child {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .action-buttons button:nth-child(2) {
+      background-color: #ff6b6b;
+      color: var(--white);
+    }
+
+    .action-buttons button:last-child {
+      background-color: var(--text-light);
+      color: var(--white);
+    }
+
+    .action-buttons button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .message-container {
+      margin-top: 30px;
+      display: none;
+    }
+
+    .message-container label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    .message-container textarea {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0 20px;
+      border-radius: 6px;
+      border: 1px solid var(--light);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      resize: vertical;
+      min-height: 120px;
+      transition: all 0.3s;
+    }
+
+    .message-container textarea:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(3, 90, 166, 0.2);
+    }
+
+    .message-container button {
+      padding: 12px 25px;
+      background-color: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .message-container button:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        width: 95%;
+        padding: 20px;
+      }
+
+      .action-buttons {
+        flex-direction: column;
+      }
+
+      .action-buttons button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    .close-btn {
+            background: none;
+            border: none;
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <button class="close-btn" onclick="window.history.back()">
+              <i class="fas fa-times"></i>
+    </button>
+    <h2>Manage Reservation: GYM Room 3</h2>
+
+    <div class="reservation-details">
+      <p><strong>Reservation ID:</strong> 67890</p>
+      <p><strong>Event Name:</strong> Basketball Game</p>
+      <p><strong>Organization:</strong> Sports Club</p>
+      <p><strong>Event Type:</strong> Sports</p>
+      <p><strong>Attendees:</strong> 30</p>
+      <p><strong>Venue Capacity:</strong> 50</p>
+      <p><strong>Status:</strong> Pending</p>
+
+      <p><strong>Time:</strong> 09/12/25 MON 13:00-15:00</p>
+      <p><strong>Notes:</strong> Reservation is awaiting approval.</p>
+    </div>
+
+    <div class="action-buttons">
+      <button onclick="approveReservation()">
+        <i class="fas fa-check"></i>
+        Approve
+      </button>
+      <button onclick="rejectReservation()">
+        <i class="fas fa-times"></i>
+        Reject
+      </button>
+      <button onclick="cancelReservation()">
+        <i class="fas fa-ban"></i>
+        Cancel
+      </button>
+    </div>
+
+    <div class="message-container" id="message-container">
+      <label for="message">Message to User (if rejecting or canceling):</label>
+      <textarea id="message" placeholder="Enter the reason..."></textarea>
+      <button onclick="sendMessage()">
+        <i class="fas fa-paper-plane"></i>
+        Send Message
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function approveReservation() {
+      alert("Reservation approved!");
+    }
+
+    function rejectReservation() {
+      document.getElementById("message-container").style.display = "block";
+    }
+
+    function cancelReservation() {
+      document.getElementById("message-container").style.display = "block";
+    }
+
+    function sendMessage() {
+      const message = document.getElementById("message").value;
+      alert("Message sent to the user: " + message);
+    }
+  </script>
+</body>
+</html>

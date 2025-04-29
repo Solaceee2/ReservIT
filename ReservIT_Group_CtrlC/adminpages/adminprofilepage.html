@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Profile Page</title>
+  <link rel="stylesheet" href="../UserPagesAndEverythingelse/resrevitGlobalNavBar.css">
+  <link rel="stylesheet" href="../static/css/all.min.css">
+  <script src="../UserPagesAndEverythingelse/everythingDesign.js" defer></script>
+  <style>
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 90px auto 30px;
+      background-color: var(--white);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+.adminname {
+        color: black;
+        margin-top: 9px;
+        font-weight: bold;
+        }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--light);
+    }
+
+    .profile img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-right: 25px;
+      border: 3px solid var(--primary);
+      object-fit: cover;
+    }
+
+    .profile-details h2 {
+      margin: 0 0 5px 0;
+      color: var(--primary-dark);
+      font-size: 24px;
+    }
+
+    .profile-details p {
+      margin: 5px 0;
+      color: var(--text-light);
+    }
+
+    .go-back {
+      margin-right: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      border-radius: 50%;
+      padding: 8px 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .go-back:hover {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .filters, .status-buttons {
+      margin-bottom: 25px;
+    }
+
+    .filters select, .status-buttons button {
+      padding: 10px 15px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: var(--light);
+      color: var(--primary-dark);
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .filters select:hover, .status-buttons button:hover {
+      background-color: var(--accent);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .filters select {
+      appearance: none;
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 15px;
+      padding-right: 30px;
+    }
+
+    .card-section {
+      margin-bottom: 30px;
+    }
+
+    .card-header {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 12px 20px;
+      border-radius: 10px 10px 0 0;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .card {
+      background-color: var(--light);
+      padding: 20px;
+      margin-bottom: 10px;
+      border-radius: 0 0 10px 10px;
+      transition: all 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .card strong {
+      color: var(--primary-dark);
+      font-size: 16px;
+    }
+
+    .card .edit-button {
+      float: right;
+      background-color: var(--white);
+      color: var(--primary-dark);
+      border: 1px solid var(--primary-dark);
+      padding: 6px 15px;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .card .edit-button:hover {
+      background-color: var(--primary-dark);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .no-results {
+      padding: 20px;
+      font-style: italic;
+      color: var(--text-light);
+      background-color: var(--bg);
+      border-radius: 0 0 10px 10px;
+      text-align: center;
+    }
+
+    /* Modals */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1001;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background-color: var(--white);
+      margin: 5% auto;
+      padding: 25px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 900px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .modal .close {
+      color: var(--text-light);
+      position: absolute;
+      right: 25px;
+      top: 15px;
+      font-size: 28px;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .modal .close:hover,
+    .modal .close:focus {
+      color: var(--primary-dark);
+      text-decoration: none;
+      cursor: pointer;
+      transform: scale(1.2);
+    }
+
+    .user-form label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 5px;
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    .user-form input,
+    .user-form select,
+    .user-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 15px;
+      border-radius: 5px;
+      border: 1px solid var(--light);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      transition: all 0.3s;
+    }
+
+    .user-form input:focus,
+    .user-form select:focus,
+    .user-form textarea:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(3, 90, 166, 0.2);
+    }
+
+    .user-form button {
+      padding: 12px 25px;
+      background-color: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .user-form button:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 5px 10px;
+        height: 50px;
+      }
+
+      .search-bar {
+        width: 200px;
+        padding: 5px 10px;
+      }
+
+      .nav-buttons button {
+        padding: 5px 10px;
+        font-size: 14px;
+      }
+
+      .container {
+        width: 95%;
+        padding: 20px;
+        margin-top: 70px;
+      }
+
+      .profile {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .profile img {
+        margin-right: 0;
+        margin-bottom: 15px;
+      }
+
+      .go-back {
+        margin-right: 0;
+        margin-bottom: 15px;
+      }
+
+      .filters select, .status-buttons button {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .modal-content {
+        width: 95%;
+      }
+    }
+
+     .close-btn {
+            background: none;
+            border: none;
+            color: black;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+
+  </style>
+</head>
+
+<body>
+  <div class="navbar">
+        <div class="logo-container">
+            <a href="adminhomepage.html"><img src="../static/scripting%20images/reservitlogo.png" class="logo" alt="ReservIt Logo"/></a>
+        </div>
+
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" id="Search" placeholder="Search bookings, reservations...">
+        </div>
+
+        <div class="nav-buttons">
+            <a href="adminprofilepage.html">
+                <button class="btn-signup">Admin Profile</button>
+            </a>
+            <a href="../UserPagesAndEverythingelse/HomePage.html">
+                <button class="btn-login">View User Site</button>
+            </a>
+
+        </div>
+
+        <div class="icons">
+            <p class="adminname">Am Admin</p>
+            <div class="dropdown-container">
+                <i class="fas fa-user-circle" id="UserProfilePic"></i>
+                <div id="profileDropdown" class="dropdown-content">
+                    <a href="adminprofilepage.html">Admin Profile</a>
+                    <a href="../UserPagesAndEverythingelse/settings.html">Settings</a>
+                    <a href="../UserPagesAndEverythingelse/HomePage.html">Log Out</a>
+                </div>
+            </div>
+            <div class="dropdown-container">
+                <i class="fas fa-bars" id="MenuBar"></i>
+                <div id="menuDropdown" class="dropdown-content">
+                    <a href="managebooking.html">Manage Bookings</a>
+                    <a href="managereservation.html">Manage Reservations</a>
+                    <a href="manageuser.html">Manage Users</a>
+                    <a href="report.html">Reports</a>
+                    <a href="systemsettings.html">System Settings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <div class="container">
+    <div class="profile">
+      <button class="close-btn" onclick="window.history.back()">
+              <i class="fas fa-times"></i>
+      </button>
+      <img src="../static/scripting%20images/profile-icon.png" alt="Profile Picture">
+      <div class="profile-details">
+        <h2>Am Admin</h2>
+        <p>My@website.com</p>
+        <p>Role: Website Admin</p>
+      </div>
+    </div>
+
+    <div class="filters">
+      <label for="sort">Manage:</label>
+      <select id="sort" onchange="filterType()">
+        <option value="all">All</option>
+        <option value="booking">Bookings</option>
+        <option value="reservation">Reservations</option>
+        <option value="users">Users</option>
+      </select>
+    </div>
+
+    <div class="status-buttons">
+      <button onclick="filterStatus('APPROVED')">Approved</button>
+      <button onclick="filterStatus('PENDING')">Pending</button>
+      <button onclick="filterStatus('CANCELLED')">Cancelled</button>
+      <button onclick="filterStatus('REJECTED')">Rejected</button>
+    </div>
+
+    <div id="cards">
+      <!-- Manage Bookings -->
+      <div class="card-section booking">
+        <div class="card-header">Bookings</div>
+        <div class="card" data-status="PENDING">
+          <strong>CIS Function Hall room 105-107</strong> <br>
+          09/09/25 SUN 08:00-17:00 - PENDING
+          <button class="edit-button" onclick="openModal('managebooking.html')">Manage Booking</button>
+        </div>
+      </div>
+
+      <!-- Manage Reservations -->
+      <div class="card-section reservation">
+        <div class="card-header">Reservations</div>
+        <div class="card" data-status="PENDING">
+          <strong>GYM Reservation</strong> <br>
+          09/12/25 MON 13:00-15:00 - PENDING
+          <button class="edit-button" onclick="openModal('managereservation.html')">Manage Reservation</button>
+        </div>
+      </div>
+
+      <!-- Manage Users -->
+      <div class="card-section users">
+        <div class="card-header">Users</div>
+        <div class="card" data-status="ACTIVE">
+          <strong>Erle Rian</strong> <br>
+          rianerle@gmail.com - ACTIVE
+          <button class="edit-button" onclick="openModal('manageuser.html')">Manage User</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <iframe id="modal-frame" src="" width="100%" height="600px"></iframe>
+    </div>
+  </div>
+
+  <script>
+    function filterStatus(status) {
+      const sections = document.querySelectorAll(".card-section");
+      sections.forEach(section => {
+        let cards = section.querySelectorAll(".card");
+        let matchCount = 0;
+
+        cards.forEach(card => {
+          if (card.dataset.status === status) {
+            card.style.display = "block";
+            matchCount++;
+          } else {
+            card.style.display = "none";
+          }
+        });
+
+        let noResult = section.querySelector(".no-results");
+        if (!noResult) {
+          noResult = document.createElement("div");
+          noResult.className = "no-results";
+          section.appendChild(noResult);
+        }
+
+        if (matchCount === 0) {
+          const type = section.classList.contains("booking") ? "booking" : "reservation";
+          noResult.textContent = `No ${status.toLowerCase()} ${type}s.`;
+          noResult.style.display = "block";
+        } else {
+          noResult.style.display = "none";
+        }
+      });
+    }
+
+    function filterType() {
+      const value = document.getElementById("sort").value;
+      const sections = document.querySelectorAll(".card-section");
+
+      sections.forEach(section => {
+        if (value === "all") {
+          section.style.display = "block";
+        } else {
+          section.style.display = section.classList.contains(value) ? "block" : "none";
+        }
+      });
+    }
+
+    function openModal(page) {
+      var modal = document.getElementById("myModal");
+      var iframe = document.getElementById("modal-frame");
+      iframe.src = page;
+      modal.style.display = "block";
+    }
+
+    function closeModal() {
+      var modal = document.getElementById("myModal");
+      var iframe = document.getElementById("modal-frame");
+      iframe.src = ""; // Stop the content when closing
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      var modal = document.getElementById("myModal");
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+  </script>
+</body>
+</html>

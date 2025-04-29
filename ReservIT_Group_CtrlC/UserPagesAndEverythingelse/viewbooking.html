@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservation Information</title>
+  <link rel="stylesheet" href="../static/css/all.min.css">
+  <link rel="stylesheet" href="resrevitGlobalNavBar.css">
+  <script src="everythingDesign.js" defer></script>
+
+  <style>
+    .back-button {
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-bottom: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--primary);
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .back-button:hover {
+      color: var(--primary-dark);
+      transform: translateX(-5px);
+    }
+
+    .card-box {
+      background-color: var(--white);
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    .section-header {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 25px;
+      color: var(--primary-dark);
+      border-bottom: 2px solid var(--light);
+      padding-bottom: 10px;
+    }
+
+    .details p {
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+
+    .details strong {
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    .status {
+      color: #2e7d32;
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin: 25px 0;
+      padding: 8px 15px;
+      background-color: #e8f5e9;
+      border-radius: 30px;
+      display: inline-block;
+    }
+
+    .button-container {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .button-container button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .button-container button:first-child {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .button-container button:nth-child(2) {
+      background-color: var(--text-light);
+      color: var(--white);
+    }
+
+    .button-container button:last-child {
+      background-color: var(--light);
+      color: var(--primary-dark);
+    }
+
+    .button-container button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container {
+      margin-top: 20px;
+    }
+
+    .form-container label {
+      display: block;
+      margin: 15px 0 8px;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    .form-container input,
+    .form-container textarea,
+    .form-container select {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 12px 15px;
+      border: 1px solid var(--light);
+      border-radius: 6px;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      transition: all 0.3s;
+    }
+
+    .form-container input:focus,
+    .form-container textarea:focus,
+    .form-container select:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(3, 90, 166, 0.2);
+    }
+
+    .form-container textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-container button {
+      padding: 12px 25px;
+      background-color: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      margin-top: 15px;
+    }
+
+    .form-container button:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .button-container {
+        flex-direction: column;
+      }
+
+      .button-container button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <span class="back-button" onclick="history.back()">
+    <i class="fas fa-arrow-left"></i>
+    Back
+  </span>
+
+  <div class="card-box" id="view-section">
+    <div class="section-header">CIS Function Hall room 105-107</div>
+    <div class="details">
+      <p><strong>Event type:</strong> General Assembly</p>
+      <p><strong>Name of event:</strong> Assembly of Technologists</p>
+      <p><strong>Date and Time:</strong> February 09, 2025, 08:00-15:00</p>
+      <p><strong>No. of attendees:</strong> 150</p>
+      <p><strong>Event arranged by:</strong> BYTE</p>
+      <p><strong>Event details:</strong>/p>
+      <div class="status">Approved</div>
+      <div class="button-container">
+        <a href="editbooking.html"><button>
+          <i class="fas fa-edit"></i>
+          Edit Booking
+        </button></a>
+        <button>
+          <i class="fas fa-times"></i>
+          Cancel Reservation
+        </button>
+        <button>
+          <i class="fas fa-history"></i>
+          History
+        </button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

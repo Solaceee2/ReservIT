@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage User</title>
+  <link rel="stylesheet" href="../static/css/all.min.css">
+    <link rel="stylesheet" href="../UserPagesAndEverythingelse/resrevitGlobalNavBar.css">
+    <script src="../UserPagesAndEverythingelse/everythingDesign.js" defer></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: var(--bg);
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 800px;
+      margin: 30px auto;
+      background-color: var(--white);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      color: var(--primary-dark);
+      font-size: 1.5rem;
+      border-bottom: 2px solid var(--light);
+      padding-bottom: 10px;
+    }
+
+    .user-details p {
+      font-size: 1rem;
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+
+    .user-details strong {
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    .reservations, .bookings {
+      margin-top: 30px;
+    }
+
+    .reservations h3, .bookings h3 {
+      color: var(--primary-dark);
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--light);
+    }
+
+    .card {
+      background-color: var(--bg);
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .card p {
+      margin: 8px 0;
+    }
+
+    .card strong {
+      color: var(--primary-dark);
+    }
+
+    .block-delete {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .block-delete button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .block-delete button:first-child {
+      background-color: #ff6b6b;
+      color: var(--white);
+    }
+
+    .block-delete button:last-child {
+      background-color: var(--text-light);
+      color: var(--white);
+    }
+
+    .block-delete button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        width: 95%;
+        padding: 20px;
+      }
+
+      .block-delete {
+        flex-direction: column;
+      }
+
+      .block-delete button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    .close-btn {
+            background: none;
+            border: none;
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <button class="close-btn" onclick="window.history.back()">
+              <i class="fas fa-times"></i>
+    </button>
+    <h2>Manage User: Erle Riann</h2>
+
+    <div class="user-details">
+      <p><strong>Name:</strong> Erle Riann</p>
+      <p><strong>Email:</strong> rianerle@gmail.com</p>
+      <p><strong>Role:</strong> Organization President</p>
+      <p><strong>Status:</strong> Active</p>
+    </div>
+
+    <div class="reservations">
+      <h3>User Reservations</h3>
+      <div class="card">
+        <p><strong>Reservation ID:</strong> 67890</p>
+        <p><strong>Venue:</strong> GYM Room 3</p>
+        <p><strong>Date:</strong> 09/12/25 MON 13:00-15:00</p>
+        <p><strong>Status:</strong> Pending</p>
+      </div>
+    </div>
+
+    <div class="bookings">
+      <h3>User Bookings</h3>
+      <div class="card">
+        <p><strong>Booking ID:</strong> 12345</p>
+        <p><strong>Venue:</strong> CIS Function Hall</p>
+        <p><strong>Date:</strong> 09/09/25 SUN 08:00-17:00</p>
+        <p><strong>Status:</strong> Approved</p>
+      </div>
+    </div>
+
+    <div class="block-delete">
+      <button onclick="blockUser()">
+        <i class="fas fa-user-lock"></i>
+        Block User
+      </button>
+      <button onclick="deleteUser()">
+        <i class="fas fa-user-times"></i>
+        Delete User
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function blockUser() {
+      alert("User has been blocked.");
+    }
+
+    function deleteUser() {
+      alert("User has been deleted.");
+    }
+  </script>
+</body>
+</html>
