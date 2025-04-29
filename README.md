@@ -28,7 +28,7 @@ Since this is a static HTML/CSS project:
 2. Open the HTML files in your browser (no server needed).
 
 ## Link to User Pages:
-[HomePage.html](https://github.com/Solaceee2/ReservIT/blob/main/ReservIT_Group_CtrlC/HomePage.html)
+[HomePage.html](ReservIT_Group_CtrlC/UserPagesAndEverythingelse/HomePage.html)
 
 ## Link to Admin Pages:
 [adminhomepage.html](ReservIT_Group_CtrlC/adminpages/adminhomepage.html)
