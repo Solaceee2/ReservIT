@@ -35,5 +35,5 @@ Since this is a static HTML/CSS project:
 
 
 ## Credits
-- Developed by: Ctrl+C Group, Gudare, Bantowag, Wakit
+- Developed by: Ctrl+C Group, Gudaren, Bantowag, Wakit
 - University Project 2025
